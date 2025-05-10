@@ -1,0 +1,106 @@
+﻿<Window x:Class="T3_RBC.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Sistema de Similaridade de Jogos" Height="600" Width="1000">
+    <DockPanel Margin="10">
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Orientation="Vertical">
+
+                <!-- Grid de Seleção -->
+                <GroupBox Header="Jogo de Entrada">
+                    <DockPanel>
+                        <Button Content="Escolher" Width="80" Margin="5" Click="BtnEscolher_Click"/>
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                            <DataGrid x:Name="GridEntrada" AutoGenerateColumns="False" Height="60" IsReadOnly="True"
+                                      EnableRowVirtualization="True"
+                                      EnableColumnVirtualization="True"
+                                      VirtualizingPanel.IsVirtualizing="True"
+                                      VirtualizingPanel.VirtualizationMode="Recycling"
+                                      ScrollViewer.CanContentScroll="True"
+                                      ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                                
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Rank" Binding="{Binding Rank}" Width="50"/>
+                                    <DataGridTextColumn Header="Nome" Binding="{Binding Nome}" Width="200"/>
+                                    <DataGridTextColumn Header="Plataforma" Binding="{Binding Plataforma}" Width="80"/>
+                                    <DataGridTextColumn Header="Ano" Binding="{Binding Ano}" Width="60"/>
+                                    <DataGridTextColumn Header="Gênero" Binding="{Binding Genero}" Width="100"/>
+                                    <DataGridTextColumn Header="Publicadora" Binding="{Binding Publicadora}" Width="150"/>
+                                    <DataGridTextColumn Header="Vendas NA" Binding="{Binding VendasNA, StringFormat=F2}" Width="80"/>
+                                    <DataGridTextColumn Header="Vendas EU" Binding="{Binding VendasEU, StringFormat=F2}" Width="80"/>
+                                    <DataGridTextColumn Header="Vendas JP" Binding="{Binding VendasJP, StringFormat=F2}" Width="80"/>
+                                    <DataGridTextColumn Header="Vendas Outros" Binding="{Binding VendasOutros, StringFormat=F2}" Width="100"/>
+                                    <DataGridTextColumn Header="Vendas Global" Binding="{Binding VendasGlobal, StringFormat=F2}" Width="100"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </ScrollViewer>
+                    </DockPanel>
+                </GroupBox>
+
+                <!-- Grid de Pesos -->
+                <GroupBox Header="Pesos dos Atributos" Margin="0,10,0,0">
+                    <DataGrid x:Name="GridPesos" AutoGenerateColumns="False" Height="60" CanUserAddRows="False" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Ano" Binding="{Binding PesoAno}" Width="70"/>
+                            <DataGridTextColumn Header="Gênero" Binding="{Binding PesoGenero}" Width="70"/>
+                            <DataGridTextColumn Header="Venda NA" Binding="{Binding PesoVendaNA}" Width="80"/>
+                            <DataGridTextColumn Header="Venda EU" Binding="{Binding PesoVendaEU}" Width="80"/>
+                            <DataGridTextColumn Header="Venda JP" Binding="{Binding PesoVendaJP}" Width="80"/>
+                            <DataGridTextColumn Header="Venda Outros" Binding="{Binding PesoVendaOutros}" Width="100"/>
+                            <DataGridTextColumn Header="Venda Global" Binding="{Binding PesoVendaGlobal}" Width="100"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </GroupBox>
+
+                <!-- Grid de Resultados -->
+                <GroupBox Header="Similaridade dos Jogos" Margin="0,10,0,0">
+                    <DockPanel LastChildFill="True">
+
+                        <!-- Botão acima da grade -->
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="5">
+                            <Button Content="Calcular" Width="80" Click="BtnCalcular_Click"/>
+                        </StackPanel>
+
+                        <!-- Grade com virtualização otimizada e scroll -->
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                            <DataGrid x:Name="GridResultado"
+                                      EnableRowVirtualization="True"
+                                      EnableColumnVirtualization="True"
+                                      VirtualizingPanel.IsVirtualizing="True"
+                                      VirtualizingPanel.VirtualizationMode="Recycling"
+                                      ScrollViewer.CanContentScroll="True"
+                                      AutoGenerateColumns="False"
+                                      IsReadOnly="True"
+                                      MaxHeight="400"
+                                      ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Rank" Binding="{Binding Rank}" Width="50"/>
+                                    <DataGridTextColumn Header="Nome" Binding="{Binding Nome}" Width="150"/>
+                                    <DataGridTextColumn Header="Plataforma" Binding="{Binding Plataforma}" Width="80"/>
+                                    <DataGridTextColumn Header="Ano" Binding="{Binding Ano}" Width="50"/>
+                                    <DataGridTextColumn Header="Sim. Ano" Binding="{Binding SimAno}" Width="70"/>
+                                    <DataGridTextColumn Header="Gênero" Binding="{Binding Genero}" Width="100"/>
+                                    <DataGridTextColumn Header="Sim. Gênero" Binding="{Binding SimGenero}" Width="70"/>
+                                    <DataGridTextColumn Header="Publicadora" Binding="{Binding Publicadora}" Width="150"/>
+                                    <DataGridTextColumn Header="Vendas NA" Binding="{Binding VendasNA}" Width="80"/>
+                                    <DataGridTextColumn Header="Sim. NA" Binding="{Binding SimVendaNA}" Width="70"/>
+                                    <DataGridTextColumn Header="Vendas EU" Binding="{Binding VendasEU}" Width="80"/>
+                                    <DataGridTextColumn Header="Sim. EU" Binding="{Binding SimVendaEU}" Width="70"/>
+                                    <DataGridTextColumn Header="Vendas JP" Binding="{Binding VendasJP}" Width="80"/>
+                                    <DataGridTextColumn Header="Sim. JP" Binding="{Binding SimVendaJP}" Width="70"/>
+                                    <DataGridTextColumn Header="Vendas Outros" Binding="{Binding VendasOutros}" Width="80"/>
+                                    <DataGridTextColumn Header="Sim. Outros" Binding="{Binding SimVendaOutros}" Width="80"/>
+                                    <DataGridTextColumn Header="Vendas Global" Binding="{Binding VendasGlobal}" Width="80"/>
+                                    <DataGridTextColumn Header="Sim. Global" Binding="{Binding SimVendaGlobal}" Width="80"/>
+                                    <DataGridTextColumn Header="Similaridade" Binding="{Binding Similaridade}" Width="100"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </ScrollViewer>
+                    </DockPanel>
+                </GroupBox>
+
+            </StackPanel>
+        </ScrollViewer>
+    </DockPanel>
+</Window>
