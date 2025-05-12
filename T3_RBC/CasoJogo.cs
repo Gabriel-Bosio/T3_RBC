@@ -9,22 +9,8 @@ namespace T3_RBC
 {
     public class CasoJogo
     {
-        public int Rank { get; set; }
-        public string Nome { get; set; }
-        public string Plataforma { get; set; }
-        public int Ano { get; set; }
-        public string Genero { get; set; }
-        public string Publicadora { get; set; }
-        public double VendasNA { get; set; }
-        public double VendasEU { get; set; }
-        public double VendasJP { get; set; }
-        public double VendasOutros { get; set; }
-        public double VendasGlobal { get; set; }
+        public JogoDTO Caso { get; set; }
         public double SimAno { get; set; }
-
-        public int ValMinAno {  get; set; }
-
-        public int ValMaxAno { get; set; }
         public double SimGenero { get; set; }
         public double SimVendaNA { get; set; }
         public double SimVendaEU { get; set; }
@@ -35,55 +21,50 @@ namespace T3_RBC
 
         public CasoJogo(JogoDTO jogo) 
         {
-            Rank = jogo.Rank;
-            Nome = jogo.Nome;
-            Plataforma = jogo.Plataforma;
-            Ano = jogo.Ano;
-            Genero = jogo.Genero;
-            Publicadora = jogo.Publicadora;
-            VendasNA = jogo.VendasNA;
-            VendasEU = jogo.VendasEU;
-            VendasJP = jogo.VendasJP;
-            VendasOutros = jogo.VendasOutros;
-            VendasGlobal = jogo.VendasGlobal;
+            Caso = jogo;
         }
 
         public void CalcularSimilaridade(JogoDTO entrada, Pesos pesos)
         {
             SimAno = CalcSimAno(entrada.Ano);
-
             SimGenero = CalcSimGenero(entrada.Genero);
+            SimVendaNA = CalcSimNumerica(Caso.VendasNA, entrada.VendasNA, 0, 41.5);
+            SimVendaEU = CalcSimNumerica(Caso.VendasEU, entrada.VendasEU, 0, 29);
+            SimVendaJP = CalcSimNumerica(Caso.VendasJP, entrada.VendasJP, 0, 10.2);
+            SimVendaOutros = CalcSimNumerica(Caso.VendasOutros, entrada.VendasOutros, 0, 10.6);
+            SimVendaGlobal = CalcSimNumerica(Caso.VendasGlobal, entrada.VendasGlobal, 0.01, 82.74);
 
-            SimVendaNA = CalcSimNumerica(VendasNA, entrada.VendasNA, 0, 41.5);
+            Similaridade = (SimAno * pesos.PesoAno + SimGenero * pesos.PesoGenero + SimVendaNA * pesos.PesoVendaNA + SimVendaEU * pesos.PesoVendaEU +
+                           SimVendaJP + pesos.PesoVendaJP + SimVendaOutros * pesos.PesoVendaOutros + SimVendaGlobal * pesos.PesoVendaGlobal)
+                           / (pesos.PesoAno + pesos.PesoGenero + pesos.PesoVendaNA + pesos.PesoVendaEU + pesos.PesoVendaJP + pesos.PesoVendaOutros + pesos.PesoVendaGlobal);
 
-            SimVendaEU = CalcSimNumerica(VendasEU, entrada.VendasEU, 0, 29);
+            SimAno = Math.Round(SimAno, 2);
+            SimGenero = Math.Round(SimGenero, 2);           
+            SimVendaNA = Math.Round(SimVendaNA, 2);          
+            SimVendaEU = Math.Round(SimVendaEU, 2);          
+            SimVendaJP = Math.Round(SimVendaJP, 2);            
+            SimVendaOutros = Math.Round(SimVendaOutros, 2);            
+            SimVendaGlobal = Math.Round( SimVendaGlobal, 2);
+            Similaridade = Math.Round(Similaridade, 2);
 
-            SimVendaJP = CalcSimNumerica(VendasJP, entrada.VendasJP, 0, 10.2);
-
-            SimVendaOutros = CalcSimNumerica(VendasOutros, entrada.VendasOutros, 0, 10.6);
-
-            SimVendaGlobal = CalcSimNumerica(VendasGlobal, entrada.VendasGlobal, 0.01, 82.74);
-
-            Similaridade = Math.Round(SimAno * pesos.PesoAno + SimGenero * pesos.PesoGenero + SimVendaNA * pesos.PesoVendaNA + SimVendaEU * pesos.PesoVendaEU + 
-                           SimVendaJP + pesos.PesoVendaJP + SimVendaOutros * pesos.PesoVendaOutros + SimVendaGlobal * pesos.PesoVendaGlobal, 2);
-
+            
         }
 
         private double CalcSimNumerica(double n1, double n2, double nMin, double nMax)
         {
-            return Math.Round(1 - (Math.Abs(n1 - n2) / (nMax - nMin)), 2);
+            return 1 - (Math.Abs(n1 - n2) / (nMax - nMin));
         }
 
         private double CalcSimAno(int anoEntrada)
         {
-            if (Ano == 0 || anoEntrada == 0) return 0;
+            if (Caso.Ano == 0 || anoEntrada == 0) return 0;
 
-            return CalcSimNumerica(Ano, anoEntrada, 1980, 2020);
+            return CalcSimNumerica(Caso.Ano, anoEntrada, 1980, 2020);
         }
 
         private double CalcSimGenero(string generoEntrada)
         {
-            return TabelaGeneros.SimGenero(Genero.Trim(), generoEntrada.Trim());
+            return TabelaGeneros.SimGenero(Caso.Genero.Trim(), generoEntrada.Trim());
         }
 
     }

@@ -75,23 +75,23 @@
                                       MaxHeight="400"
                                       ScrollViewer.HorizontalScrollBarVisibility="Auto">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Rank" Binding="{Binding Rank}" Width="50"/>
-                                    <DataGridTextColumn Header="Nome" Binding="{Binding Nome}" Width="150"/>
-                                    <DataGridTextColumn Header="Plataforma" Binding="{Binding Plataforma}" Width="80"/>
-                                    <DataGridTextColumn Header="Ano" Binding="{Binding Ano}" Width="50"/>
+                                    <DataGridTextColumn Header="Rank" Binding="{Binding Caso.Rank}" Width="50"/>
+                                    <DataGridTextColumn Header="Nome" Binding="{Binding Caso.Nome}" Width="150"/>
+                                    <DataGridTextColumn Header="Plataforma" Binding="{Binding Caso.Plataforma}" Width="80"/>
+                                    <DataGridTextColumn Header="Ano" Binding="{Binding Caso.Ano}" Width="50"/>
                                     <DataGridTextColumn Header="Sim. Ano" Binding="{Binding SimAno}" Width="70"/>
-                                    <DataGridTextColumn Header="Gênero" Binding="{Binding Genero}" Width="100"/>
+                                    <DataGridTextColumn Header="Gênero" Binding="{Binding Caso.Genero}" Width="100"/>
                                     <DataGridTextColumn Header="Sim. Gênero" Binding="{Binding SimGenero}" Width="70"/>
-                                    <DataGridTextColumn Header="Publicadora" Binding="{Binding Publicadora}" Width="150"/>
-                                    <DataGridTextColumn Header="Vendas NA" Binding="{Binding VendasNA}" Width="80"/>
+                                    <DataGridTextColumn Header="Publicadora" Binding="{Binding Caso.Publicadora}" Width="150"/>
+                                    <DataGridTextColumn Header="Vendas NA" Binding="{Binding Caso.VendasNA}" Width="80"/>
                                     <DataGridTextColumn Header="Sim. NA" Binding="{Binding SimVendaNA}" Width="70"/>
-                                    <DataGridTextColumn Header="Vendas EU" Binding="{Binding VendasEU}" Width="80"/>
+                                    <DataGridTextColumn Header="Vendas EU" Binding="{Binding Caso.VendasEU}" Width="80"/>
                                     <DataGridTextColumn Header="Sim. EU" Binding="{Binding SimVendaEU}" Width="70"/>
-                                    <DataGridTextColumn Header="Vendas JP" Binding="{Binding VendasJP}" Width="80"/>
+                                    <DataGridTextColumn Header="Vendas JP" Binding="{Binding Caso.VendasJP}" Width="80"/>
                                     <DataGridTextColumn Header="Sim. JP" Binding="{Binding SimVendaJP}" Width="70"/>
-                                    <DataGridTextColumn Header="Vendas Outros" Binding="{Binding VendasOutros}" Width="80"/>
+                                    <DataGridTextColumn Header="Vendas Outros" Binding="{Binding Caso.VendasOutros}" Width="80"/>
                                     <DataGridTextColumn Header="Sim. Outros" Binding="{Binding SimVendaOutros}" Width="80"/>
-                                    <DataGridTextColumn Header="Vendas Global" Binding="{Binding VendasGlobal}" Width="80"/>
+                                    <DataGridTextColumn Header="Vendas Global" Binding="{Binding Caso.VendasGlobal}" Width="80"/>
                                     <DataGridTextColumn Header="Sim. Global" Binding="{Binding SimVendaGlobal}" Width="80"/>
                                     <DataGridTextColumn Header="Similaridade" Binding="{Binding Similaridade}" Width="100"/>
                                 </DataGrid.Columns>

@@ -8,14 +8,15 @@ namespace T3_RBC
 {
     public static class TabelaGeneros
     {
-        private static string[] Generos = { "Action", "Adventure", "Fighting", "Misc", "Platform", "Puzzle", "Racing", "Role-Playing", "Shooter", "Simulation", "Sports", "Strategy"};
+        private static string[] Generos = { "Action", "Adventure", "Fighting", "Misc", "Platform", "Puzzle", 
+                                            "Racing", "Role-Playing", "Shooter", "Simulation", "Sports", "Strategy"};
 
         private static double[][] Sims = new double[][]
         {
             new double[] {1, 0.8, 0.8, 0.4, 0.4, 0, 0.4, 0.6, 0.8, 0.4, 0.4, 0.2},
             new double[] {0.8, 1, 0.6, 0.4, 0.6, 0.4, 0.2, 0.8, 0.4, 0.2, 0, 0},
             new double[] {0.8, 0.6, 1, 0.4, 0.4, 0, 0, 0.6, 0.8, 0.4, 0.2, 0.4},
-            new double[] {0.4, 0.4, 0.4, 0.6, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4},
+            new double[] {0.4, 0.4, 0.4, 1, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4},
             new double[] {0.4, 0.6, 0.4, 0.4, 1, 0.6, 0, 0, 0.2, 0, 0, 0.6},
             new double[] {0, 0.4, 0, 0.4, 0.6, 1, 0, 0.6, 0, 0.2, 0, 0.6},
             new double[] {0.4, 0.2, 0, 0.4, 0, 0, 1, 0, 0, 0.4, 0.8, 0.6},

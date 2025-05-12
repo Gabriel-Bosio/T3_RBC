@@ -48,9 +48,12 @@ namespace T3_RBC
             List<CasoJogo> resultados = new List<CasoJogo>();
             foreach (JogoDTO jogo in todosJogos)
             {
-                CasoJogo caso = new CasoJogo(jogo);
-                caso.CalcularSimilaridade(jogoSelecionado, pesos);
-                resultados.Add(caso);
+                if (jogo.Rank != jogoSelecionado.Rank)
+                {
+                    CasoJogo caso = new CasoJogo(jogo);
+                    caso.CalcularSimilaridade(jogoSelecionado, pesos);
+                    resultados.Add(caso);
+                }
             }
             resultados = resultados.OrderByDescending(x => x.Similaridade).ToList();
 
